@@ -4,7 +4,7 @@
   "version_number": "0.7.0",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305",
-    "nickklmao-MenuLib-2.5.3"
+    "nickklmao-MenuLib-2.5.4"
   ],
   "website_url": "https://github.com/SoundedSquash/REPO-SpawnManager"
 }
