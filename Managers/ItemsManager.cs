@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
 using SpawnManager.Extensions;
@@ -56,6 +57,7 @@ namespace SpawnManager.Managers
         public static void RestoreItems()
         {
             if (!StatsManagerItemDictionaryIsAvailable) return;
+            RegisterRepoLibItems();
             if (_removedList.Count == 0) return;
 
             for (var i = _removedList.Count - 1; i >= 0; i--)
@@ -65,6 +67,20 @@ namespace SpawnManager.Managers
                 StatsManager.instance.itemDictionary.TryAdd(keyValuePair.Key, keyValuePair.Value);
                 _removedList.Remove(keyValuePair.Key);
             }
+        }
+        
+        private static void RegisterRepoLibItems()
+        {
+            if (!PluginManager.IsPluginInstalled(Constants.RepoLibGuid)) return;
+            
+            var repoAsm = AppDomain.CurrentDomain
+                .GetAssemblies()
+                .FirstOrDefault(a => a.GetName().Name == "REPOLib");
+            if (repoAsm == null) return;
+            
+            var repoLibItemsType = repoAsm.GetType("REPOLib.Modules.Items");
+            var repoLibItems = Traverse.Create(repoLibItemsType);
+            repoLibItems.Method("RegisterItems").GetValue();
         }
     }
 }

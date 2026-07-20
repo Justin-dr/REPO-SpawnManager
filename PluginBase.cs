@@ -5,12 +5,14 @@ using SpawnManager.Managers;
 
 namespace SpawnManager
 {
-    [BepInPlugin(PluginGuid, PluginName, PluginVersion), BepInDependency(Constants.MenuLibGuid, BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInPlugin(PluginGuid, PluginName, PluginVersion),
+     BepInDependency(Constants.MenuLibGuid, BepInDependency.DependencyFlags.SoftDependency),
+     BepInDependency(Constants.RepoLibGuid, BepInDependency.DependencyFlags.SoftDependency)]
     public class SpawnManagerBase : BaseUnityPlugin
     {
         private const string PluginGuid = "soundedsquash.spawnmanager";
         private const string PluginName = "Enemy/Valuable Spawn Manager";
-        private const string PluginVersion = "0.6.9.0";
+        private const string PluginVersion = "0.7.0.0";
         
         private readonly Harmony _harmony = new Harmony(PluginGuid);
 

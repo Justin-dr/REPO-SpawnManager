@@ -1,3 +1,6 @@
+## 0.7.0
+- Fixed a bug where shop items from mods were not showing up in the list to enable/disable.
+
 ## 0.6.9
 - Fixed a bug where disabled shop items were still enabled for arenas.
 
